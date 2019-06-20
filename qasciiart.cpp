@@ -14,7 +14,7 @@ AsciiArtData::AsciiArtData(QWidget *parent)
     : QObject(parent)
 {
     m_width = m_height = 0;
-    ResizeData(QPoint(9,9));
+    ResizeData(QPoint(-1,-1));
 }
 AsciiArtData::~AsciiArtData()
 {
@@ -183,10 +183,10 @@ void AsciiArtData::ResizeData(QPoint point)
     int old_width = m_width;
     int old_height = m_height;
 
-    int min_needed_width = std::max(10, point.x() + 1);
+    int min_needed_width = std::max(80, point.x() + 1);
     min_needed_width = std::max(min_needed_width, m_width);
 
-    int min_needed_height = std::max(10, point.y() + 1);
+    int min_needed_height = std::max(40, point.y() + 1);
     min_needed_height = std::max(min_needed_height, old_height);
     min_needed_height = std::max(min_needed_height, m_data.size());
 
@@ -999,8 +999,9 @@ void QAsciiArt::keyPressEvent(QKeyEvent *event)
 
 void QAsciiArt::resizeEvent(QResizeEvent* event)
 {
-    QSize size = event->size();
-    QPoint displayed_size = ScreenToText(QPoint(size.width(), size.height() ));
+    QPoint on_screen_size = TextToScreen(QPoint(m_data.Width(), m_data.Height()));
+    this->setMinimumSize(on_screen_size.x(),on_screen_size.y());
+    this->setMaximumSize(on_screen_size.x(),on_screen_size.y());
 }
 
 void QAsciiArt::ActivateToolMove()
@@ -1066,7 +1067,10 @@ void QAsciiArt::Redo()
 
 void QAsciiArt::OnDataAreaChanged(QPoint size)
 {
-    emit DataAreaChanged(size);
+    QPoint on_screen_size = TextToScreen(size);
+    this->setMinimumSize(on_screen_size.x(),on_screen_size.y());
+    this->setMaximumSize(on_screen_size.x(),on_screen_size.y());
+    emit DataAreaChanged(on_screen_size);
 }
 
 void QAsciiArt::ActivateToolHelper(Tool tool)

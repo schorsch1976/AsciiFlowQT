@@ -7,6 +7,8 @@
 
 #include <QButtonGroup>
 
+#include <QScrollArea>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,6 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->customArea,         &QAsciiArt::UndoAvail, [this](bool state)
     {
         ui->actionUndo->setEnabled(state);
+    });
+
+    // scrollarea
+    ui->scrollArea->setBackgroundRole(QPalette::Dark);
+    connect(ui->customArea,         &QAsciiArt::DataAreaChanged, [this](QPoint p)
+    {
+        ui->scrollArea->ensureVisible(p.x(), p.y());
     });
 
     ui->actionRedo->setEnabled(false);
