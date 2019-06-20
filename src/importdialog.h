@@ -4,22 +4,24 @@
 #include <QDialog>
 #include <QString>
 
-namespace Ui {
+namespace Ui
+{
 class ImportDialog;
 }
 
-class ImportDialog : public QDialog {
-  Q_OBJECT
+class ImportDialog : public QDialog
+{
+	Q_OBJECT
 
 public:
-  explicit ImportDialog(QWidget *parent = nullptr);
-  ~ImportDialog();
+	explicit ImportDialog(QWidget *parent = nullptr);
+	~ImportDialog();
 
 signals:
-  void ImportedData(QString data);
+	void ImportedData(QString data);
 
 private:
-  Ui::ImportDialog *ui;
+	Ui::ImportDialog *ui;
 };
 
 #endif // IMPORTDIALOG_H
