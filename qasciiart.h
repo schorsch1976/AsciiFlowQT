@@ -21,11 +21,12 @@ enum class Tool
     Erase
 };
 
-class AsciiArtData
+class AsciiArtData : public QObject
 {
+    Q_OBJECT
 public:
     // rule of 5
-    AsciiArtData();
+    explicit AsciiArtData(QWidget *parent);
     virtual ~AsciiArtData();
 
     AsciiArtData(const AsciiArtData& rhs);
@@ -47,6 +48,10 @@ public:
 
     int Width();
     int Height();
+
+signals:
+     void DataAreaChanged(QPoint size);
+
 private:
     void ResizeData(QPoint point);
     void CheckData();
@@ -67,6 +72,10 @@ public:
     void Import(QString data);
     void Clear();
 
+    // sliding
+    QPoint CurrentSlideStart();
+    void SetSlideStart(QPoint point);
+
 protected:
     // Override from QWidget
     virtual void paintEvent(QPaintEvent* event) override;
@@ -76,11 +85,15 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     virtual void keyPressEvent(QKeyEvent *event) override;
+
+    virtual void resizeEvent(QResizeEvent* event) override;
 public:
 signals:
     void ActiveTool(Tool tool);
     void UndoAvail(bool status);
     void RedoAvail(bool status);
+
+    void DataAreaChanged(QPoint size);
 
 public slots:
     void ActivateToolMove();
@@ -94,6 +107,7 @@ public slots:
     void Undo();
     void Redo();
 
+    void OnDataAreaChanged(QPoint size);
 private:
     void ActivateToolHelper(Tool tool);
 
@@ -121,6 +135,9 @@ private:
 
     static const int CELLSIZE=12;
     static const int FONTSIZE = CELLSIZE-2;
+
+    // sliding
+    QPoint m_slide_start;
 
     // The data area
     QPoint m_start;

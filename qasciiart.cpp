@@ -10,16 +10,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 // The AsciiArtData
 ///////////////////////////////////////////////////////////////////////////////
-AsciiArtData::AsciiArtData()
+AsciiArtData::AsciiArtData(QWidget *parent)
+    : QObject(parent)
 {
     m_width = m_height = 0;
-    ResizeData(QPoint(80,80));
+    ResizeData(QPoint(9,9));
 }
 AsciiArtData::~AsciiArtData()
 {
 }
 
 AsciiArtData::AsciiArtData(const AsciiArtData& rhs)
+    : QObject(rhs.parent())
 {
     *this = rhs;
 }
@@ -29,7 +31,7 @@ AsciiArtData& AsciiArtData::operator=(const AsciiArtData& rhs)
     m_height = rhs.m_height;
     m_data = rhs.m_data;
 
-    ResizeData(QPoint(m_width,m_height));
+    ResizeData(QPoint(m_width-1,m_height-1));
     return *this;
 }
 
@@ -43,7 +45,7 @@ AsciiArtData& AsciiArtData::operator=(AsciiArtData&& rhs)
     m_height = rhs.m_height;
     m_data = rhs.m_data;
 
-    ResizeData(QPoint(m_width,m_height));
+    ResizeData(QPoint(m_width-1,m_height-1));
     return *this;
 }
 
@@ -115,7 +117,15 @@ void AsciiArtData::ImportData(QString data)
     m_data.push_back(line);
     m_height = m_data.size();
 
-    ResizeData(QPoint(m_width, m_height));
+    if (m_width < 10)
+    {
+        m_width = 10;
+    }
+    if (m_height < 10)
+    {
+        m_height = 10;
+    }
+    ResizeData(QPoint(m_width-1,m_height-1));
     CheckData();
 
 }
@@ -125,7 +135,7 @@ void AsciiArtData::Clear()
     m_data.clear();
     m_width= 80;
     m_height = 80;
-    ResizeData(QPoint(m_width, m_height));
+    ResizeData(QPoint(m_width-1,m_height-1));
 }
 void AsciiArtData::Set(QPoint p, QChar c)
 {
@@ -192,6 +202,8 @@ void AsciiArtData::ResizeData(QPoint point)
     }
 
     CheckData();
+
+    emit DataAreaChanged(QPoint(m_width, m_height));
 }
 void AsciiArtData::CheckData()
 {
@@ -381,21 +393,21 @@ void ToolRectangle::OnMousePressed(QPoint /* point */)
 }
 void ToolRectangle::OnMouseMove(QRect area, QPoint /* point */)
 {
-    for (int y = area.y(); y <= area.y() + area.height(); ++y)
+    for (int y = area.y(); y < area.y() + area.height()-1; ++y)
     {
-        if (y == area.y() || y == area.y() + area.height())
+        if (y == area.y() || y == area.y() + area.height()-2)
         {
-            for (int x = area.x(); x < area.x() + area.width(); ++x)
+            for (int x = area.x(); x < area.x() + area.width()-1; ++x)
             {
                 m_data.Set(x,y,'-');
             }
             m_data.Set(area.x(),y,'+');
-            m_data.Set(area.x() + area.width(),y,'+');
+            m_data.Set(area.x() + area.width()-1,y,'+');
         }
         else
         {
             m_data.Set(area.x(),y,'|');
-            m_data.Set(area.x() + area.width(),y,'|');
+            m_data.Set(area.x() + area.width()-1,y,'|');
         }
     }
 }
@@ -441,32 +453,32 @@ void ToolClass::OnMousePressed(QPoint /* point */)
 }
 void ToolClass::OnMouseMove(QRect area, QPoint /* point */)
 {
-    for (int y = area.y(); y <= area.y() + area.height(); ++y)
+    for (int y = area.y(); y < area.y() + area.height()-1; ++y)
     {
-        if (y == area.y() || y == area.y() + area.height())
+        if (y == area.y() || y == area.y() + area.height()-2)
         {
-            for (int x = area.x(); x < area.x() + area.width(); ++x)
+            for (int x = area.x(); x < area.x() + area.width()-1; ++x)
             {
                 m_data.Set(x,y,'-');
             }
             m_data.Set(area.x(),y,'+');
-            m_data.Set(area.x() + area.width(),y,'+');
+            m_data.Set(area.x() + area.width()-1,y,'+');
         }
         else
         {
             m_data.Set(area.x(),y,'|');
-            m_data.Set(area.x() + area.width(),y,'|');
+            m_data.Set(area.x() + area.width()-1,y,'|');
         }
     }
 
     if (area.height() > 2)
     {
-        for (int x = area.x(); x < area.x() + area.width(); ++x)
+        for (int x = area.x(); x < area.x() + area.width()-1; ++x)
         {
             m_data.Set(x,area.y() + 2,'-');
         }
         m_data.Set(area.x(), area.y() + 2, '+');
-        m_data.Set(area.x()+ area.width(), area.y() + 2, '+');
+        m_data.Set(area.x()+ area.width()-1, area.y() + 2, '+');
     }
 }
 void ToolClass::OnMouseReleased(QPoint /* point */)
@@ -752,7 +764,7 @@ void ToolErase::OnMouseMove(QRect area, QPoint /* point */)
 }
 void ToolErase::OnMouseReleased(QPoint /* point */)
 {
-    for (int y = m_marked.y(); y < m_marked.y() + m_marked.height() ; ++y)
+    for (int y = m_marked.y(); y < m_marked.y() + m_marked.height(); ++y)
     {
         for (int x = m_marked.x(); x < m_marked.x() + m_marked.width(); ++x)
         {
@@ -781,13 +793,18 @@ QVector<QRect> ToolErase::MarkedAreas()
 ///////////////////////////////////////////////////////////////////////////////
 // The Widget
 ///////////////////////////////////////////////////////////////////////////////
-QAsciiArt::QAsciiArt(QWidget *parent) : QWidget(parent)
+QAsciiArt::QAsciiArt(QWidget *parent)
+    : QWidget(parent), m_data(this), m_data_backup(this)
 {
     // initialize stuff for drawing
     m_font = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     m_font.setPointSize(FONTSIZE);
 
     m_solid = QBrush(Qt::SolidLine);
+
+    m_slide_start = QPoint(0,0);
+
+    connect(&m_data, &AsciiArtData::DataAreaChanged, this, &QAsciiArt::OnDataAreaChanged);
 
     ActivateToolHelper(Tool::Move);
 
@@ -817,6 +834,15 @@ void QAsciiArt::Clear()
 
     // issue repaint
     update();
+}
+
+QPoint QAsciiArt::CurrentSlideStart()
+{
+    return m_slide_start;
+}
+void QAsciiArt::SetSlideStart(QPoint point)
+{
+    m_slide_start = point;
 }
 
 // Override from QWidget
@@ -881,8 +907,8 @@ void QAsciiArt::paintEvent(QPaintEvent* /* event */)
         for (QRect& rect : selected)
         {
             QPoint screenpos1 = TextToScreen(QPoint(rect.x(), rect.y()));
-            QPoint screenpos2 = TextToScreen(QPoint(rect.x()+ rect.width()+1,
-                                            rect.y()+ rect.height()+1));
+            QPoint screenpos2 = TextToScreen(QPoint(rect.x()+ rect.width(),
+                                            rect.y()+ rect.height()));
 
             QRect screenpos(screenpos1.x(), screenpos1.y(),
                             screenpos2.x() - screenpos1.x(),
@@ -935,8 +961,8 @@ void QAsciiArt::mouseMoveEvent(QMouseEvent *event)
 {
     QPoint HitText = ScreenToText(QPoint(event -> x(), event -> y()));
 
-    int width = std::abs(HitText.x()-m_start.x());
-    int height = std::abs(HitText.y()-m_start.y());
+    int width = std::abs(HitText.x()-m_start.x()+1);
+    int height = std::abs(HitText.y()-m_start.y()+1);
     int x = std::min(HitText.x(),m_start.x());
     int y = std::min(HitText.y(),m_start.y());
 
@@ -960,6 +986,13 @@ void QAsciiArt::keyPressEvent(QKeyEvent *event)
     mp_current_tool->OnKeyPressed(txt);
     update();
 }
+
+void QAsciiArt::resizeEvent(QResizeEvent* event)
+{
+    QSize size = event->size();
+    QPoint displayed_size = ScreenToText(QPoint(size.width(), size.height() ));
+}
+
 void QAsciiArt::ActivateToolMove()
 {
     ActivateToolHelper(Tool::Move);
@@ -1020,6 +1053,12 @@ void QAsciiArt::Redo()
     emit RedoAvail(m_redo.size() > 0);
     emit UndoAvail(m_undo.size() > 0);
 }
+
+void QAsciiArt::OnDataAreaChanged(QPoint size)
+{
+    emit DataAreaChanged(size);
+}
+
 void QAsciiArt::ActivateToolHelper(Tool tool)
 {
     m_current_tool = tool;
