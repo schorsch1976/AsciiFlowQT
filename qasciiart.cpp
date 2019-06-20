@@ -115,17 +115,10 @@ void AsciiArtData::ImportData(QString data)
 
     }
     m_data.push_back(line);
-    m_height = m_data.size();
 
-    if (m_width < 10)
-    {
-        m_width = 10;
-    }
-    if (m_height < 10)
-    {
-        m_height = 10;
-    }
-    ResizeData(QPoint(m_width-1,m_height-1));
+    m_width = m_height = -1;
+
+    ResizeData(QPoint(-1,-1));
     CheckData();
 
 }
@@ -177,33 +170,50 @@ int AsciiArtData::Height()
 // private
 void AsciiArtData::ResizeData(QPoint point)
 {
-    bool resize_needed = false;
-    if (point.y() >= m_height)
-    {
-        m_height = point.y()+1;
-        m_data.resize(m_height);
-        resize_needed = true;
-    }
-    if (point.x() >= m_width)
-    {
-        m_width = point.x() + 1;
-        resize_needed = true;
-    }
-
-    if (!resize_needed)
+    if (m_width > 0 &&
+        m_height > 0 &&
+        point.x() >= 0 &&
+        point.y() > 0 &&
+        point.x() < m_width && point.y() < m_height)
     {
         return;
     }
 
-    for (int y = 0; y < m_height; ++y)
+    // determine minimum needed size
+    int old_width = m_width;
+    int old_height = m_height;
+
+    int min_needed_width = std::max(10, point.x() + 1);
+    min_needed_width = std::max(min_needed_width, m_width);
+
+    int min_needed_height = std::max(10, point.y() + 1);
+    min_needed_height = std::max(min_needed_height, old_height);
+    min_needed_height = std::max(min_needed_height, m_data.size());
+
+    int current_width = 0;
+    for (int y = 0; y < m_data.size(); ++y)
+    {
+        current_width = std::max(current_width, m_data[y].size());
+    }
+    min_needed_width = std::max(min_needed_width, current_width);
+
+    // now resize everything to the needed size
+    m_data.resize(min_needed_height);
+    for (int y = 0; y < m_data.size(); ++y)
     {
         QString& line = m_data[y];
-        line.resize(m_width, QChar::Space);
+        line.resize(min_needed_width, QChar::Space);
     }
+
+    m_width = min_needed_width;
+    m_height = min_needed_height;
 
     CheckData();
 
-    emit DataAreaChanged(QPoint(m_width, m_height));
+    if (m_width != old_width || m_height != old_height)
+    {
+        emit DataAreaChanged(QPoint(m_width, m_height));
+    }
 }
 void AsciiArtData::CheckData()
 {
