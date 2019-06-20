@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>ico/About.png</file>
+        <file>ico/Arrow.png</file>
+        <file>ico/class.png</file>
+        <file>ico/Erase.png</file>
+        <file>ico/Export.png</file>
+        <file>ico/Freehand.png</file>
+        <file>ico/Import.png</file>
+        <file>ico/New.png</file>
+        <file>ico/rectangle.png</file>
+        <file>ico/Redo.png</file>
+        <file>ico/Text.png</file>
+        <file>ico/Undo.png</file>
+        <file>ico/Move.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

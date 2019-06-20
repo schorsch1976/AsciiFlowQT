@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+     Q_INIT_RESOURCE(resource);
+
     // connect the tool handlers
     connect(ui->actionToolArrow,    &QAction::triggered, ui->customArea, &QAsciiArt::ActivateToolArrow);
     connect(ui->actionToolClass,    &QAction::triggered, ui->customArea, &QAsciiArt::ActivateToolClass);
@@ -58,6 +60,38 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // default
     ui->btnToolMove->setChecked(true);
+
+    // icons
+#if 0
+    ui->btnToolArrow->setIcon(*new QIcon(":/ico/Arrow.png"));
+    ui->btnToolClass->setIcon(*new QIcon(":/ico/class.png"));
+    ui->btnToolErase->setIcon(*new QIcon(":/ico/Erase.png"));
+    ui->btnToolFreehand->setIcon(*new QIcon(":/ico/Freehand.png"));
+    ui->btnToolMove->setIcon(*new QIcon(":/ico/Move.png"));
+    ui->btnToolRectangle->setIcon(*new QIcon(":/ico/rectangle.png"));
+    ui->btnToolText->setIcon(*new QIcon(":/ico/Text.png"));
+
+    ui->actionNew->setIcon(*new QIcon(":/ico/New.png"));
+    ui->actionImport->setIcon(*new QIcon(":/ico/Import.png"));
+    ui->actionExport->setIcon(*new QIcon(":/ico/Export.png"));
+    ui->actionAbout->setIcon(*new QIcon(":/ico/About.png"));
+
+    ui->actionUndo->setIcon(*new QIcon(":/ico/Undo.png"));
+    ui->actionRedo->setIcon(*new QIcon(":/ico/Redo.png"));
+
+
+
+
+    QSize ico_size(50,50);
+    ui->btnToolArrow->setIconSize(ico_size);
+    ui->btnToolClass->setIconSize(ico_size);
+    ui->btnToolErase->setIconSize(ico_size);
+    ui->btnToolFreehand->setIconSize(ico_size);
+    ui->btnToolMove->setIconSize(ico_size);
+    ui->btnToolRectangle->setIconSize(ico_size);
+    ui->btnToolText->setIconSize(ico_size);
+#endif
+
 }
 
 MainWindow::~MainWindow()

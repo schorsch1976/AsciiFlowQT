@@ -133,9 +133,9 @@ void AsciiArtData::ImportData(QString data)
 void AsciiArtData::Clear()
 {
     m_data.clear();
-    m_width= 80;
-    m_height = 80;
-    ResizeData(QPoint(m_width-1,m_height-1));
+    m_width= 0;
+    m_height = 0;
+    ResizeData(QPoint(10-1,10-1));
 }
 void AsciiArtData::Set(QPoint p, QChar c)
 {
