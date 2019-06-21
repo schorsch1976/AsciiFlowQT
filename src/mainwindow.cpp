@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	ui->setupUi(this);
 
-	Q_INIT_RESOURCE(resource);
-
 	// connect the tool handlers
 	connect(ui->actionToolArrow, &QAction::triggered, ui->customArea,
 			&QAsciiArt::ActivateToolArrow);
@@ -51,20 +49,28 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->actionUndo->setEnabled(false);
 
 	// connect the tool buttons to trigger the actions
-	connect(ui->btnToolArrow, &QPushButton::clicked, ui->actionToolArrow,
+    connect(ui->btnToolArrow, &QToolButton::clicked, ui->actionToolArrow,
 			&QAction::trigger);
-	connect(ui->btnToolClass, &QPushButton::clicked, ui->actionToolClass,
+    connect(ui->btnToolClass, &QToolButton::clicked, ui->actionToolClass,
 			&QAction::trigger);
-	connect(ui->btnToolErase, &QPushButton::clicked, ui->actionToolErase,
+    connect(ui->btnToolErase, &QToolButton::clicked, ui->actionToolErase,
 			&QAction::trigger);
-	connect(ui->btnToolFreehand, &QPushButton::clicked, ui->actionToolFreehand,
+    connect(ui->btnToolFreehand, &QToolButton::clicked, ui->actionToolFreehand,
 			&QAction::trigger);
-	connect(ui->btnToolMove, &QPushButton::clicked, ui->actionToolMove,
+    connect(ui->btnToolMove, &QToolButton::clicked, ui->actionToolMove,
 			&QAction::trigger);
-	connect(ui->btnToolRectangle, &QPushButton::clicked,
+    connect(ui->btnToolRectangle, &QToolButton::clicked,
 			ui->actionToolRectangle, &QAction::trigger);
-	connect(ui->btnToolText, &QPushButton::clicked, ui->actionToolText,
+    connect(ui->btnToolText, &QToolButton::clicked, ui->actionToolText,
 			&QAction::trigger);
+
+    // Connect the toolbar buttons to the actions
+    connect(ui->btnNew, &QToolButton::clicked, ui->actionNew, &QAction::trigger);
+    connect(ui->btnImport, &QToolButton::clicked, ui->actionImport, &QAction::trigger);
+    connect(ui->btnExport, &QToolButton::clicked, ui->actionExport, &QAction::trigger);
+    connect(ui->btnUndo, &QToolButton::clicked, ui->actionUndo, &QAction::trigger);
+    connect(ui->btnRedo, &QToolButton::clicked, ui->actionRedo, &QAction::trigger);
+    connect(ui->btnAbout, &QToolButton::clicked, ui->actionAbout, &QAction::trigger);
 
 	// custom widget to us
 	connect(ui->customArea, &QAsciiArt::ActiveTool, this,
@@ -77,39 +83,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::OnAbout);
 
-	// default
+    // default Tool
 	ui->btnToolMove->setChecked(true);
-
-	// icons
-#if 0
-    ui->btnToolArrow->setIcon(*new QIcon(":/ico/Arrow.png"));
-    ui->btnToolClass->setIcon(*new QIcon(":/ico/class.png"));
-    ui->btnToolErase->setIcon(*new QIcon(":/ico/Erase.png"));
-    ui->btnToolFreehand->setIcon(*new QIcon(":/ico/Freehand.png"));
-    ui->btnToolMove->setIcon(*new QIcon(":/ico/Move.png"));
-    ui->btnToolRectangle->setIcon(*new QIcon(":/ico/rectangle.png"));
-    ui->btnToolText->setIcon(*new QIcon(":/ico/Text.png"));
-
-    ui->actionNew->setIcon(*new QIcon(":/ico/New.png"));
-    ui->actionImport->setIcon(*new QIcon(":/ico/Import.png"));
-    ui->actionExport->setIcon(*new QIcon(":/ico/Export.png"));
-    ui->actionAbout->setIcon(*new QIcon(":/ico/About.png"));
-
-    ui->actionUndo->setIcon(*new QIcon(":/ico/Undo.png"));
-    ui->actionRedo->setIcon(*new QIcon(":/ico/Redo.png"));
-
-
-
-
-    QSize ico_size(50,50);
-    ui->btnToolArrow->setIconSize(ico_size);
-    ui->btnToolClass->setIconSize(ico_size);
-    ui->btnToolErase->setIconSize(ico_size);
-    ui->btnToolFreehand->setIconSize(ico_size);
-    ui->btnToolMove->setIconSize(ico_size);
-    ui->btnToolRectangle->setIconSize(ico_size);
-    ui->btnToolText->setIconSize(ico_size);
-#endif
 }
 
 MainWindow::~MainWindow() { delete ui; }

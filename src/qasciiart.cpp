@@ -162,7 +162,7 @@ void AsciiArtData::ResizeData(QPoint point)
 	int min_needed_width = std::max(80, point.x() + 1);
 	min_needed_width = std::max(min_needed_width, m_width);
 
-	int min_needed_height = std::max(40, point.y() + 1);
+    int min_needed_height = std::max(45, point.y() + 1);
 	min_needed_height = std::max(min_needed_height, old_height);
 	min_needed_height = std::max(min_needed_height, m_data.size());
 
