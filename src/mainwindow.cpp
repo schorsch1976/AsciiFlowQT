@@ -36,41 +36,47 @@ MainWindow::MainWindow(QWidget *parent)
 			&QAsciiArt::Undo);
 
 	connect(ui->customArea, &QAsciiArt::RedoAvail,
-            [this](bool state) { ui->btnRedo->setEnabled(state); });
+			[this](bool state) { ui->btnRedo->setEnabled(state); });
 	connect(ui->customArea, &QAsciiArt::UndoAvail,
-            [this](bool state) { ui->btnUndo->setEnabled(state); });
+			[this](bool state) { ui->btnUndo->setEnabled(state); });
 
 	// scrollarea
 	ui->scrollArea->setBackgroundRole(QPalette::Dark);
 	connect(ui->customArea, &QAsciiArt::DataAreaChanged,
 			[this](QPoint p) { ui->scrollArea->ensureVisible(p.x(), p.y()); });
 
-    ui->btnRedo->setEnabled(false);
-    ui->btnUndo->setEnabled(false);
+	ui->btnRedo->setEnabled(false);
+	ui->btnUndo->setEnabled(false);
 
 	// connect the tool buttons to trigger the actions
-    connect(ui->btnToolArrow, &QToolButton::clicked, ui->actionToolArrow,
+	connect(ui->btnToolArrow, &QToolButton::clicked, ui->actionToolArrow,
 			&QAction::trigger);
-    connect(ui->btnToolClass, &QToolButton::clicked, ui->actionToolClass,
+	connect(ui->btnToolClass, &QToolButton::clicked, ui->actionToolClass,
 			&QAction::trigger);
-    connect(ui->btnToolErase, &QToolButton::clicked, ui->actionToolErase,
+	connect(ui->btnToolErase, &QToolButton::clicked, ui->actionToolErase,
 			&QAction::trigger);
-    connect(ui->btnToolFreehand, &QToolButton::clicked, ui->actionToolFreehand,
+	connect(ui->btnToolFreehand, &QToolButton::clicked, ui->actionToolFreehand,
 			&QAction::trigger);
-    connect(ui->btnToolMove, &QToolButton::clicked, ui->actionToolMove,
+	connect(ui->btnToolMove, &QToolButton::clicked, ui->actionToolMove,
 			&QAction::trigger);
-    connect(ui->btnToolRectangle, &QToolButton::clicked,
+	connect(ui->btnToolRectangle, &QToolButton::clicked,
 			ui->actionToolRectangle, &QAction::trigger);
-    connect(ui->btnToolText, &QToolButton::clicked, ui->actionToolText,
+	connect(ui->btnToolText, &QToolButton::clicked, ui->actionToolText,
 			&QAction::trigger);
 
-    // Connect the toolbar buttons to the actions
-    connect(ui->btnNew, &QToolButton::clicked, ui->actionNew, &QAction::trigger);
-    connect(ui->btnImport, &QToolButton::clicked, ui->actionImport, &QAction::trigger);
-    connect(ui->btnExport, &QToolButton::clicked, ui->actionExport, &QAction::trigger);
-    connect(ui->btnUndo, &QToolButton::clicked, ui->actionUndo, &QAction::trigger);
-    connect(ui->btnRedo, &QToolButton::clicked, ui->actionRedo, &QAction::trigger);
-    connect(ui->btnAbout, &QToolButton::clicked, ui->actionAbout, &QAction::trigger);
+	// Connect the toolbar buttons to the actions
+	connect(ui->btnNew, &QToolButton::clicked, ui->actionNew,
+			&QAction::trigger);
+	connect(ui->btnImport, &QToolButton::clicked, ui->actionImport,
+			&QAction::trigger);
+	connect(ui->btnExport, &QToolButton::clicked, ui->actionExport,
+			&QAction::trigger);
+	connect(ui->btnUndo, &QToolButton::clicked, ui->actionUndo,
+			&QAction::trigger);
+	connect(ui->btnRedo, &QToolButton::clicked, ui->actionRedo,
+			&QAction::trigger);
+	connect(ui->btnAbout, &QToolButton::clicked, ui->actionAbout,
+			&QAction::trigger);
 
 	// custom widget to us
 	connect(ui->customArea, &QAsciiArt::ActiveTool, this,
@@ -83,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::OnAbout);
 
-    // default Tool
+	// default Tool
 	ui->btnToolMove->setChecked(true);
 }
 

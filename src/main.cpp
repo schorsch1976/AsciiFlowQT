@@ -4,9 +4,9 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-    Q_INIT_RESOURCE(resource);
+	Q_INIT_RESOURCE(resource);
 
-    a.setWindowIcon(QIcon(":/ico/class.png"));
+	a.setWindowIcon(QIcon(":/ico/class.png"));
 
 	MainWindow w;
 	w.show();

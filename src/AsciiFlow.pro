@@ -29,14 +29,34 @@ SOURCES += \
         qasciiart.cpp \
     exportdialog.cpp \
     importdialog.cpp \
-    about.cpp
+    about.cpp \
+    ToolMove.cpp \
+    AsciiArtData.cpp \
+    ToolArrow.cpp \
+    ToolClass.cpp \
+    ToolErase.cpp \
+    ToolFreehand.cpp \
+    ToolMove.cpp \
+    ToolRectangle.cpp \
+    ToolText.cpp \
+    ITool.cpp
 
 HEADERS += \
         mainwindow.h \
     qasciiart.h \
     exportdialog.h \
     importdialog.h \
-    about.h
+    about.h \
+    ITool.h \
+    ToolMove.h \
+    AsciiArtData.h \
+    ToolArrow.h \
+    ToolClass.h \
+    ToolErase.h \
+    ToolFreehand.h \
+    ToolMove.h \
+    ToolRectangle.h \
+    ToolText.h
 
 FORMS += \
         mainwindow.ui \

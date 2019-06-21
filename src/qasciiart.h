@@ -1,6 +1,8 @@
 #ifndef QASCIIART_H
 #define QASCIIART_H
 
+#include "ITool.h"
+
 #include <QBrush>
 #include <QFont>
 #include <QPen>
@@ -9,57 +11,6 @@
 #include <QString>
 #include <QWidget>
 #include <tuple>
-
-enum class Tool
-{
-	Move,
-	Rectangle,
-	Class,
-	Arrow,
-	Text,
-	Freehand,
-	Erase
-};
-
-class AsciiArtData : public QObject
-{
-	Q_OBJECT
-public:
-	// rule of 5
-	explicit AsciiArtData(QWidget *parent);
-	virtual ~AsciiArtData();
-
-	AsciiArtData(const AsciiArtData &rhs);
-	AsciiArtData &operator=(const AsciiArtData &rhs);
-
-	AsciiArtData(AsciiArtData &&rhs);
-	AsciiArtData &operator=(AsciiArtData &&rhs);
-
-	// access the data
-	QString ExportData();
-	void ImportData(QString data);
-
-	void Set(QPoint p, QChar c);
-	void Set(int x, int y, QChar c);
-	QChar At(QPoint p);
-	QChar At(int x, int y);
-
-	void Clear();
-
-	int Width();
-	int Height();
-
-signals:
-	void DataAreaChanged(QPoint size);
-
-private:
-	void ResizeData(QPoint point);
-	void CheckData();
-
-	int m_width;
-	int m_height;
-	QVector<QString> m_data;
-};
 
 class QAsciiArt : public QWidget
 {
@@ -115,22 +66,6 @@ private:
 
 	QPoint ScreenToText(QPoint screen);
 	QPoint TextToScreen(QPoint txt);
-
-public:
-	// Strategy
-	class ITool
-	{
-	public:
-		virtual ~ITool();
-
-		virtual void OnMousePressed(QPoint point) = 0;
-		virtual void OnMouseMove(QRect area, QPoint point) = 0;
-		virtual void OnMouseReleased(QPoint point) = 0;
-
-		virtual void OnKeyPressed(QString c) = 0;
-
-		virtual QVector<QRect> MarkedAreas() = 0;
-	};
 
 private:
 	QSharedPointer<ITool> mp_current_tool;
