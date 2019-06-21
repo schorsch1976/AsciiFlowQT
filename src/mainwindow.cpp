@@ -36,17 +36,17 @@ MainWindow::MainWindow(QWidget *parent)
 			&QAsciiArt::Undo);
 
 	connect(ui->customArea, &QAsciiArt::RedoAvail,
-			[this](bool state) { ui->actionRedo->setEnabled(state); });
+            [this](bool state) { ui->btnRedo->setEnabled(state); });
 	connect(ui->customArea, &QAsciiArt::UndoAvail,
-			[this](bool state) { ui->actionUndo->setEnabled(state); });
+            [this](bool state) { ui->btnUndo->setEnabled(state); });
 
 	// scrollarea
 	ui->scrollArea->setBackgroundRole(QPalette::Dark);
 	connect(ui->customArea, &QAsciiArt::DataAreaChanged,
 			[this](QPoint p) { ui->scrollArea->ensureVisible(p.x(), p.y()); });
 
-	ui->actionRedo->setEnabled(false);
-	ui->actionUndo->setEnabled(false);
+    ui->btnRedo->setEnabled(false);
+    ui->btnUndo->setEnabled(false);
 
 	// connect the tool buttons to trigger the actions
     connect(ui->btnToolArrow, &QToolButton::clicked, ui->actionToolArrow,
