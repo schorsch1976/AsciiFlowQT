@@ -119,9 +119,11 @@ ENDIF (WIN32)
 ######################################################################
 # Version
 ######################################################################
+find_package(Git REQUIRED)
+
 # branch
 EXECUTE_PROCESS(
-  COMMAND git rev-parse --abbrev-ref HEAD
+  COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_BRANCH
   OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -129,7 +131,7 @@ EXECUTE_PROCESS(
 
 # commit hash
 EXECUTE_PROCESS(
-  COMMAND git log -1 --format=%h
+  COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_COMMIT_HASH
   OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -137,7 +139,7 @@ EXECUTE_PROCESS(
 
 # description
 EXECUTE_PROCESS(
-  COMMAND git describe --tags
+  COMMAND ${GIT_EXECUTABLE} describe --tags
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_DESCRIPTION
   OUTPUT_STRIP_TRAILING_WHITESPACE
