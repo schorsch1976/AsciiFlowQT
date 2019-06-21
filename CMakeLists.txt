@@ -116,6 +116,36 @@ IF (WIN32)
 	ENDIF(MSYS)
 ENDIF (WIN32)
 
+######################################################################
+# Version
+######################################################################
+# branch
+EXECUTE_PROCESS(
+  COMMAND git rev-parse --abbrev-ref HEAD
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_BRANCH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# commit hash
+EXECUTE_PROCESS(
+  COMMAND git log -1 --format=%h
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_COMMIT_HASH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# description
+EXECUTE_PROCESS(
+  COMMAND git describe --tags
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_DESCRIPTION
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+ADD_DEFINITIONS("-DGIT_COMMIT_HASH=${GIT_COMMIT_HASH}")
+ADD_DEFINITIONS("-DGIT_BRANCH=${GIT_BRANCH}")
+ADD_DEFINITIONS("-DGIT_DESCRIPTION=${GIT_DESCRIPTION}")
 
 ######################################################################
 # QT 5
