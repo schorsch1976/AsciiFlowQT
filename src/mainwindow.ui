@@ -25,7 +25,7 @@
            <string>New</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/New.png</normaloff>:/ico/New.png</iconset>
           </property>
           <property name="iconSize">
@@ -52,7 +52,7 @@
            <string>Import</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/Import.png</normaloff>:/ico/Import.png</iconset>
           </property>
           <property name="iconSize">
@@ -72,7 +72,7 @@
            <string>Export</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/Export.png</normaloff>:/ico/Export.png</iconset>
           </property>
           <property name="iconSize">
@@ -99,7 +99,7 @@
            <string>Undo</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/Undo.png</normaloff>:/ico/Undo.png</iconset>
           </property>
           <property name="iconSize">
@@ -119,7 +119,7 @@
            <string>Redo</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/Redo.png</normaloff>:/ico/Redo.png</iconset>
           </property>
           <property name="iconSize">
@@ -152,7 +152,7 @@
            <string>About</string>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
+           <iconset>
             <normaloff>:/ico/About.png</normaloff>:/ico/About.png</iconset>
           </property>
           <property name="iconSize">
@@ -178,7 +178,7 @@
              <string>Move</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/Move.png</normaloff>:/ico/Move.png</iconset>
             </property>
             <property name="iconSize">
@@ -201,7 +201,7 @@
              <string>Rectangle</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/rectangle.png</normaloff>:/ico/rectangle.png</iconset>
             </property>
             <property name="iconSize">
@@ -224,7 +224,7 @@
              <string>Class</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/class.png</normaloff>:/ico/class.png</iconset>
             </property>
             <property name="iconSize">
@@ -247,8 +247,31 @@
              <string>Arrow</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/Arrow.png</normaloff>:/ico/Arrow.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextUnderIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="btnToolLine">
+            <property name="text">
+             <string>Line</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>:/ico/Line.png</normaloff>:/ico/Line.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -270,7 +293,7 @@
              <string>Text</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/Text.png</normaloff>:/ico/Text.png</iconset>
             </property>
             <property name="iconSize">
@@ -293,7 +316,7 @@
              <string>Erase</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/Erase.png</normaloff>:/ico/Erase.png</iconset>
             </property>
             <property name="iconSize">
@@ -316,7 +339,7 @@
              <string>Freehand</string>
             </property>
             <property name="icon">
-             <iconset resource="resource.qrc">
+             <iconset>
               <normaloff>:/ico/Freehand.png</normaloff>:/ico/Freehand.png</iconset>
             </property>
             <property name="iconSize">
@@ -479,6 +502,14 @@
     <string>About</string>
    </property>
   </action>
+  <action name="actionToolLine">
+   <property name="text">
+    <string>Line</string>
+   </property>
+   <property name="toolTip">
+    <string>Line</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -489,8 +520,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

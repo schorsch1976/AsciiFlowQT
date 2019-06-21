@@ -39,7 +39,8 @@ SOURCES += \
     ToolMove.cpp \
     ToolRectangle.cpp \
     ToolText.cpp \
-    ITool.cpp
+    ITool.cpp \
+    ToolLine.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -56,7 +57,8 @@ HEADERS += \
     ToolFreehand.h \
     ToolMove.h \
     ToolRectangle.h \
-    ToolText.h
+    ToolText.h \
+    ToolLine.h
 
 FORMS += \
         mainwindow.ui \

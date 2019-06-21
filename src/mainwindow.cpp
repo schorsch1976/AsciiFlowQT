@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 	// connect the tool handlers
 	connect(ui->actionToolArrow, &QAction::triggered, ui->customArea,
 			&QAsciiArt::ActivateToolArrow);
+	connect(ui->actionToolLine, &QAction::triggered, ui->customArea,
+			&QAsciiArt::ActivateToolLine);
 	connect(ui->actionToolClass, &QAction::triggered, ui->customArea,
 			&QAsciiArt::ActivateToolClass);
 	connect(ui->actionToolErase, &QAction::triggered, ui->customArea,
@@ -50,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// connect the tool buttons to trigger the actions
 	connect(ui->btnToolArrow, &QToolButton::clicked, ui->actionToolArrow,
+			&QAction::trigger);
+	connect(ui->btnToolLine, &QToolButton::clicked, ui->actionToolLine,
 			&QAction::trigger);
 	connect(ui->btnToolClass, &QToolButton::clicked, ui->actionToolClass,
 			&QAction::trigger);
@@ -90,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::OnAbout);
 
 	// default Tool
-	ui->btnToolMove->setChecked(true);
+	ui->btnToolLine->setChecked(true);
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -98,6 +102,7 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::OnToolChanged(Tool tool)
 {
 	ui->btnToolArrow->setChecked(false);
+	ui->btnToolLine->setChecked(false);
 	ui->btnToolClass->setChecked(false);
 	ui->btnToolErase->setChecked(false);
 	ui->btnToolFreehand->setChecked(false);
@@ -110,6 +115,10 @@ void MainWindow::OnToolChanged(Tool tool)
 		case Tool::Arrow:
 			ui->actionToolArrow->setChecked(true);
 			ui->btnToolArrow->setChecked(true);
+			break;
+		case Tool::Line:
+			ui->actionToolLine->setChecked(true);
+			ui->btnToolLine->setChecked(true);
 			break;
 		case Tool::Class:
 			ui->actionToolClass->setChecked(true);

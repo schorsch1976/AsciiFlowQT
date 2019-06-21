@@ -52,6 +52,7 @@ public slots:
 	void ActivateToolRectangle();
 	void ActivateToolClass();
 	void ActivateToolArrow();
+	void ActivateToolLine();
 	void ActivateToolText();
 	void ActivateToolFreehand();
 	void ActivateToolErase();

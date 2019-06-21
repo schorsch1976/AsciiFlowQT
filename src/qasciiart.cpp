@@ -10,6 +10,7 @@
 #include "ToolClass.h"
 #include "ToolErase.h"
 #include "ToolFreehand.h"
+#include "ToolLine.h"
 #include "ToolMove.h"
 #include "ToolRectangle.h"
 #include "ToolText.h"
@@ -31,7 +32,7 @@ QAsciiArt::QAsciiArt(QWidget *parent)
 	connect(&m_data, &AsciiArtData::DataAreaChanged, this,
 			&QAsciiArt::OnDataAreaChanged);
 
-	ActivateToolHelper(Tool::Move);
+	ActivateToolHelper(Tool::Line);
 
 	setFocusPolicy(Qt::FocusPolicy::StrongFocus);
 }
@@ -221,6 +222,7 @@ void QAsciiArt::ActivateToolMove() { ActivateToolHelper(Tool::Move); }
 void QAsciiArt::ActivateToolRectangle() { ActivateToolHelper(Tool::Rectangle); }
 void QAsciiArt::ActivateToolClass() { ActivateToolHelper(Tool::Class); }
 void QAsciiArt::ActivateToolArrow() { ActivateToolHelper(Tool::Arrow); }
+void QAsciiArt::ActivateToolLine() { ActivateToolHelper(Tool::Line); }
 void QAsciiArt::ActivateToolText() { ActivateToolHelper(Tool::Text); }
 
 void QAsciiArt::ActivateToolFreehand() { ActivateToolHelper(Tool::Freehand); }
@@ -281,6 +283,9 @@ void QAsciiArt::ActivateToolHelper(Tool tool)
 			break;
 		case Tool::Arrow:
 			mp_current_tool.reset(new ToolArrow(m_data));
+			break;
+		case Tool::Line:
+			mp_current_tool.reset(new ToolLine(m_data));
 			break;
 		case Tool::Text:
 			mp_current_tool.reset(new ToolText(m_data));

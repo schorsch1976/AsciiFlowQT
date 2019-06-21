@@ -13,6 +13,7 @@ enum class Tool
 	Rectangle,
 	Class,
 	Arrow,
+	Line,
 	Text,
 	Freehand,
 	Erase
