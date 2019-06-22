@@ -158,7 +158,23 @@ void MainWindow::OnToolChanged(Tool tool)
 	}
 }
 
-void MainWindow::OnNew() { ui->customArea->Clear(); }
+void MainWindow::OnNew()
+{
+	QString current_data = ui->customArea->Export();
+
+	if (current_data.size())
+	{
+		QMessageBox box(QMessageBox::Question, tr("New"),
+						tr("New would destroy current data.\n\nContinue?"),
+						QMessageBox::Yes | QMessageBox::No);
+		if (box.exec() != QMessageBox::Yes)
+		{
+			return;
+		};
+	}
+
+	ui->customArea->Clear();
+}
 void MainWindow::OnExport()
 {
 	QString exported = ui->customArea->Export();
