@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "changepreferencesdialog.h"
 #include "qasciiart.h"
+
 #include <QMainWindow>
 
 namespace Ui
@@ -26,6 +28,9 @@ private slots:
 	void OnAbout();
 
 private:
+	void ApplySettings();
+	Preferences m_preferences;
+
 	Ui::MainWindow *ui;
 };
 

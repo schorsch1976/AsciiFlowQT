@@ -28,6 +28,10 @@ SET(SRCS
 
     resource.qrc
 
+    changepreferencesdialog.cpp
+    changepreferencesdialog.h
+    changepreferencesdialog.ui
+
     ToolArrow.cpp
     ToolArrow.h
 

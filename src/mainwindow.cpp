@@ -82,6 +82,13 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->btnAbout, &QToolButton::clicked, ui->actionAbout,
 			&QAction::trigger);
 
+	connect(ui->btnSettings, &QToolButton::clicked, [this]() {
+		ChangePreferencesDialog dlg(m_preferences, this);
+		dlg.exec();
+		this->ApplySettings();
+		ChangePreferencesDialog::SavePreferences(m_preferences);
+	});
+
 	// custom widget to us
 	connect(ui->customArea, &QAsciiArt::ActiveTool, this,
 			&MainWindow::OnToolChanged);
@@ -95,6 +102,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// default Tool
 	ui->btnToolLine->setChecked(true);
+
+	// load the settings and apply then
+	m_preferences = ChangePreferencesDialog::LoadPreferences();
+	ApplySettings();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -178,4 +189,25 @@ void MainWindow::OnAbout()
 {
 	About dlg(this);
 	dlg.exec();
+}
+
+void MainWindow::ApplySettings()
+{
+	std::vector<QToolButton *> buttons = {
+		ui->btnNew,			 ui->btnRedo,		  ui->btnUndo,
+		ui->btnAbout,		 ui->btnExport,		  ui->btnImport,
+		ui->btnSettings,
+
+		ui->btnToolLine,	 ui->btnToolMove,	 ui->btnToolText,
+		ui->btnToolArrow,	ui->btnToolClass,	ui->btnToolErase,
+		ui->btnToolFreehand, ui->btnToolRectangle};
+
+	QSize size(m_preferences.icon_size, m_preferences.icon_size);
+	Qt::ToolButtonStyle style =
+		static_cast<Qt::ToolButtonStyle>(m_preferences.button_style);
+	for (auto &c : buttons)
+	{
+		c->setIconSize(size);
+		c->setToolButtonStyle(style);
+	}
 }

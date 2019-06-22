@@ -21,6 +21,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QToolButton" name="btnNew">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>New</string>
           </property>
@@ -48,6 +54,12 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnImport">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Import</string>
           </property>
@@ -68,6 +80,12 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnExport">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Export</string>
           </property>
@@ -95,6 +113,12 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnUndo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Undo</string>
           </property>
@@ -115,6 +139,12 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnRedo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Redo</string>
           </property>
@@ -147,7 +177,39 @@
          </spacer>
         </item>
         <item>
+         <widget class="QToolButton" name="btnSettings">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Preferences</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resource.qrc">
+            <normaloff>:/ico/Prefs.png</normaloff>:/ico/Prefs.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="btnAbout">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>About</string>
           </property>
@@ -158,7 +220,7 @@
           <property name="iconSize">
            <size>
             <width>50</width>
-            <height>40</height>
+            <height>50</height>
            </size>
           </property>
           <property name="toolButtonStyle">
@@ -174,6 +236,12 @@
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QToolButton" name="btnToolMove">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Move</string>
             </property>
@@ -197,6 +265,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolRectangle">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Rectangle</string>
             </property>
@@ -220,6 +294,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolClass">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Class</string>
             </property>
@@ -243,6 +323,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolArrow">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Arrow</string>
             </property>
@@ -266,6 +352,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolLine">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Line</string>
             </property>
@@ -289,6 +381,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolText">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Text</string>
             </property>
@@ -312,6 +410,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolErase">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Erase</string>
             </property>
@@ -335,6 +439,12 @@
           </item>
           <item>
            <widget class="QToolButton" name="btnToolFreehand">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Freehand</string>
             </property>
@@ -521,11 +631,12 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>scrollArea</tabstop>
+  <tabstop>btnNew</tabstop>
   <tabstop>btnImport</tabstop>
   <tabstop>btnExport</tabstop>
   <tabstop>btnUndo</tabstop>
   <tabstop>btnRedo</tabstop>
+  <tabstop>btnSettings</tabstop>
   <tabstop>btnAbout</tabstop>
   <tabstop>btnToolMove</tabstop>
   <tabstop>btnToolRectangle</tabstop>
@@ -535,7 +646,7 @@
   <tabstop>btnToolText</tabstop>
   <tabstop>btnToolErase</tabstop>
   <tabstop>btnToolFreehand</tabstop>
-  <tabstop>btnNew</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources>
   <include location="resource.qrc"/>

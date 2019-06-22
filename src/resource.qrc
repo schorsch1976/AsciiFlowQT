@@ -15,5 +15,6 @@
         <file>ico/Undo.png</file>
         <file>ico/AsciiFlowLogo.png</file>
         <file>ico/Line.png</file>
+        <file>ico/Prefs.png</file>
     </qresource>
 </RCC>
