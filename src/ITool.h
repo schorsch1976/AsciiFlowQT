@@ -11,6 +11,7 @@ enum class Tool
 {
 	Move,
 	Rectangle,
+	Resize,
 	Class,
 	Arrow,
 	Line,

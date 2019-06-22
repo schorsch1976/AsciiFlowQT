@@ -16,8 +16,10 @@ As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow 
 Features:
 =========
 - Export and Import ascii to/from the clipboard
+- Export and Import ascii to/from a file
 - Move parts of the ascii art
 - draw rectangles
+- resize rectangles
 - draw class diagramms
 - draw arrows
 - draw lines

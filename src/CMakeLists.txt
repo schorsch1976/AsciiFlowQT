@@ -53,6 +53,9 @@ SET(SRCS
     ToolRectangle.cpp
     ToolRectangle.h
 
+    ToolResize.cpp
+    ToolResize.h
+
     ToolText.cpp
     ToolText.h
 )

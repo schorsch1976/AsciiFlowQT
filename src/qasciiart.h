@@ -50,6 +50,7 @@ signals:
 public slots:
 	void ActivateToolMove();
 	void ActivateToolRectangle();
+	void ActivateToolResize();
 	void ActivateToolClass();
 	void ActivateToolArrow();
 	void ActivateToolLine();

@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
 			&QAsciiArt::ActivateToolMove);
 	connect(ui->actionToolRectangle, &QAction::triggered, ui->customArea,
 			&QAsciiArt::ActivateToolRectangle);
+	connect(ui->actionToolResize, &QAction::triggered, ui->customArea,
+			&QAsciiArt::ActivateToolResize);
 	connect(ui->actionToolText, &QAction::triggered, ui->customArea,
 			&QAsciiArt::ActivateToolText);
 
@@ -65,6 +67,8 @@ MainWindow::MainWindow(QWidget *parent)
 			&QAction::trigger);
 	connect(ui->btnToolRectangle, &QToolButton::clicked,
 			ui->actionToolRectangle, &QAction::trigger);
+	connect(ui->btnToolResize, &QToolButton::clicked, ui->actionToolResize,
+			&QAction::trigger);
 	connect(ui->btnToolText, &QToolButton::clicked, ui->actionToolText,
 			&QAction::trigger);
 
@@ -119,6 +123,7 @@ void MainWindow::OnToolChanged(Tool tool)
 	ui->btnToolFreehand->setChecked(false);
 	ui->btnToolMove->setChecked(false);
 	ui->btnToolRectangle->setChecked(false);
+	ui->btnToolResize->setChecked(false);
 	ui->btnToolText->setChecked(false);
 
 	switch (tool)
@@ -150,6 +155,10 @@ void MainWindow::OnToolChanged(Tool tool)
 		case Tool::Rectangle:
 			ui->actionToolRectangle->setChecked(true);
 			ui->btnToolRectangle->setChecked(true);
+			break;
+		case Tool::Resize:
+			ui->actionToolResize->setChecked(true);
+			ui->btnToolResize->setChecked(true);
 			break;
 		case Tool::Text:
 			ui->actionToolText->setChecked(true);

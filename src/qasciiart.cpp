@@ -13,6 +13,7 @@
 #include "ToolLine.h"
 #include "ToolMove.h"
 #include "ToolRectangle.h"
+#include "ToolResize.h"
 #include "ToolText.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -224,6 +225,7 @@ void QAsciiArt::resizeEvent(QResizeEvent *event)
 
 void QAsciiArt::ActivateToolMove() { ActivateToolHelper(Tool::Move); }
 void QAsciiArt::ActivateToolRectangle() { ActivateToolHelper(Tool::Rectangle); }
+void QAsciiArt::ActivateToolResize() { ActivateToolHelper(Tool::Resize); }
 void QAsciiArt::ActivateToolClass() { ActivateToolHelper(Tool::Class); }
 void QAsciiArt::ActivateToolArrow() { ActivateToolHelper(Tool::Arrow); }
 void QAsciiArt::ActivateToolLine() { ActivateToolHelper(Tool::Line); }
@@ -281,6 +283,9 @@ void QAsciiArt::ActivateToolHelper(Tool tool)
 			break;
 		case Tool::Rectangle:
 			mp_current_tool.reset(new ToolRectangle(m_data));
+			break;
+		case Tool::Resize:
+			mp_current_tool.reset(new ToolResize(m_data));
 			break;
 		case Tool::Class:
 			mp_current_tool.reset(new ToolClass(m_data));
