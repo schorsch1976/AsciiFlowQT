@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1075</width>
-    <height>889</height>
+    <height>961</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -303,8 +303,21 @@
             <property name="text">
              <string>Resize</string>
             </property>
+            <property name="icon">
+             <iconset resource="resource.qrc">
+              <normaloff>:/ico/Resize.png</normaloff>:/ico/Resize.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="checkable">
              <bool>true</bool>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextUnderIcon</enum>
             </property>
            </widget>
           </item>
@@ -508,7 +521,7 @@
              <x>0</x>
              <y>0</y>
              <width>964</width>
-             <height>750</height>
+             <height>822</height>
             </rect>
            </property>
            <property name="sizePolicy">

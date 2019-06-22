@@ -16,5 +16,6 @@
         <file>ico/AsciiFlowLogo.png</file>
         <file>ico/Line.png</file>
         <file>ico/Prefs.png</file>
+        <file>ico/Resize.png</file>
     </qresource>
 </RCC>
