@@ -58,6 +58,10 @@ void QAsciiArt::Clear()
 	m_undo.clear();
 	m_redo.clear();
 
+	// Tell others, no redo undo more
+	emit RedoAvail(m_redo.size() > 0);
+	emit UndoAvail(m_undo.size() > 0);
+
 	// issue repaint
 	update();
 }
