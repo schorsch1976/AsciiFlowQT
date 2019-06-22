@@ -15,9 +15,9 @@ About::About(QWidget *parent) : QDialog(parent), ui(new Ui::About)
 
 	connect(ui->btnOk, &QPushButton::clicked, [this]() { this->close(); });
 
-    auto open_link = [](QString link) {
-        QRegularExpression ex("&");
-        link.remove(ex);
+	auto open_link = [](QString link) {
+		QRegularExpression ex("&");
+		link.remove(ex);
 		bool res = QDesktopServices::openUrl(QUrl(link));
 		if (!res)
 		{

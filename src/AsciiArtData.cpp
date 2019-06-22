@@ -54,7 +54,7 @@ QString AsciiArtData::ExportData()
 		cleaned.push_back(line);
 	}
 
-	int last_used_line = 0;
+	int last_used_line = -1;
 	for (int y = 0; y < cleaned.size(); ++y)
 	{
 		if (cleaned[y].size())

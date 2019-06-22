@@ -5,8 +5,7 @@
 #include "exportdialog.h"
 #include "importdialog.h"
 
-#include <QButtonGroup>
-
+#include <QMessageBox>
 #include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -156,6 +155,18 @@ void MainWindow::OnExport()
 }
 void MainWindow::OnImport()
 {
+	QString current_data = ui->customArea->Export();
+
+	if (current_data.size())
+	{
+		QMessageBox box(QMessageBox::Question, tr("Import"),
+						tr("Import would destroy current data.\n\nContinue?"),
+						QMessageBox::Yes | QMessageBox::No);
+		if (box.exec() != QMessageBox::Yes)
+		{
+			return;
+		};
+	}
 	ImportDialog dlg(this);
 	connect(&dlg, &ImportDialog::ImportedData,
 			[this](QString data) { ui->customArea->Import(data); });
