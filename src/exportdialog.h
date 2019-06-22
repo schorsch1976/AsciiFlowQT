@@ -17,8 +17,12 @@ public:
 	explicit ExportDialog(QString data, QWidget *parent = nullptr);
 	~ExportDialog();
 
+public slots:
+	void OnSaveToFile();
+
 private:
 	Ui::ExportDialog *ui;
+	QString m_data;
 };
 
 #endif // EXPORTDIALOG_H

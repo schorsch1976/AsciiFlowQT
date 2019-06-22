@@ -132,10 +132,13 @@ void AsciiArtData::Set(int x, int y, QChar c) { Set(QPoint(x, y), c); }
 
 QChar AsciiArtData::At(QPoint p)
 {
-	ResizeData(p);
 	if (p.x() < 0 || p.y() < 0)
 	{
 		return QChar(0);
+	}
+	if (p.x() >= m_width || p.y() >= m_height)
+	{
+		ResizeData(p);
 	}
 	return m_data[p.y()][p.x()];
 }

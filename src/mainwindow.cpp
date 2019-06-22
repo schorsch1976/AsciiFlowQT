@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// scrollarea
 	ui->scrollArea->setBackgroundRole(QPalette::Dark);
+	ui->scrollArea->setWidgetResizable(true);
 	connect(ui->customArea, &QAsciiArt::DataAreaChanged,
 			[this](QPoint p) { ui->scrollArea->ensureVisible(p.x(), p.y()); });
 

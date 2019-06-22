@@ -3,6 +3,13 @@
 
 #include <QString>
 
+#include <QDebug>
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QStandardPaths>
+#include <QTextStream>
+
 ImportDialog::ImportDialog(QWidget *parent)
 	: QDialog(parent), ui(new Ui::ImportDialog)
 {
@@ -13,6 +20,63 @@ ImportDialog::ImportDialog(QWidget *parent)
 		this->close();
 	});
 	connect(ui->btnCancel, &QPushButton::clicked, [this]() { this->close(); });
+
+	connect(ui->btnImportFromFile, &QPushButton::clicked, this,
+			&ImportDialog::OnImportFromFile);
 }
 
 ImportDialog::~ImportDialog() { delete ui; }
+
+void ImportDialog::OnImportFromFile()
+{
+	QString documents =
+		QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	QString filename = QFileDialog::getOpenFileName(
+		this, tr("Load File"), documents, tr("Text files (*.txt)"));
+	if (filename.size() == 0)
+	{
+		return;
+	}
+
+	// Load from file
+	QFile file(filename, this);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		QMessageBox box(QMessageBox::Warning, tr("Error"),
+						tr("Could not open file."), QMessageBox::Ok);
+		box.exec();
+		return;
+	}
+
+	QString raw = QTextStream(&file).readAll();
+
+	// just use the latin1/print part
+	QString tmp;
+	int curr_x = 0;
+	int max_x = 0;
+	int max_y = 0;
+	for (int i = 0; i < raw.size(); ++i)
+	{
+		if (raw[i].toLatin1() && raw[i].isPrint())
+		{
+			tmp += raw[i];
+			++curr_x;
+		}
+		else if (raw[i] == QChar::Space)
+		{
+			tmp += raw[i];
+			++curr_x;
+		}
+		else if (raw[i] == '\n')
+		{
+			tmp += raw[i];
+			max_x = std::max(max_x, curr_x);
+			curr_x = 0;
+			++max_y;
+		}
+	}
+
+	qDebug() << "Imported " << tmp.size() << " bytes.";
+	qDebug() << "Imported " << max_x << " x " << max_y << " area.";
+	ui->textEditImport->setText(tmp);
+}

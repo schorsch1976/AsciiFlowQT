@@ -17,6 +17,8 @@ public:
 	explicit ImportDialog(QWidget *parent = nullptr);
 	~ImportDialog();
 
+public slots:
+	void OnImportFromFile();
 signals:
 	void ImportedData(QString data);
 
