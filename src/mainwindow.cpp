@@ -219,13 +219,13 @@ void MainWindow::OnAbout()
 void MainWindow::ApplySettings()
 {
 	std::vector<QToolButton *> buttons = {
-		ui->btnNew,			 ui->btnRedo,		  ui->btnUndo,
-		ui->btnAbout,		 ui->btnExport,		  ui->btnImport,
+		ui->btnNew,			 ui->btnRedo,		   ui->btnUndo,
+		ui->btnAbout,		 ui->btnExport,		   ui->btnImport,
 		ui->btnSettings,
 
-		ui->btnToolLine,	 ui->btnToolMove,	 ui->btnToolText,
-		ui->btnToolArrow,	ui->btnToolClass,	ui->btnToolErase,
-		ui->btnToolFreehand, ui->btnToolRectangle};
+		ui->btnToolLine,	 ui->btnToolMove,	  ui->btnToolText,
+		ui->btnToolArrow,	ui->btnToolClass,	 ui->btnToolErase,
+		ui->btnToolFreehand, ui->btnToolRectangle, ui->btnToolResize};
 
 	QSize size(m_preferences.icon_size, m_preferences.icon_size);
 	Qt::ToolButtonStyle style =
