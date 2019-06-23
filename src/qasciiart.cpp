@@ -1,6 +1,7 @@
 #include "qasciiart.h"
 
 #include <QChar>
+#include <QDebug>
 #include <QFontDatabase>
 #include <QMouseEvent>
 #include <QPainter>
@@ -72,11 +73,20 @@ void QAsciiArt::SetSlideStart(QPoint point) { m_slide_start = point; }
 
 // Override from QWidget
 
-void QAsciiArt::paintEvent(QPaintEvent * /* event */)
+void QAsciiArt::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
-	painter.eraseRect(0, 0, width() - 1, height() - 1);
+	QRect area = event->rect();
+	qDebug() << "Repainting: " << area;
+
+	painter.eraseRect(area);
 	painter.setRenderHint(QPainter::Antialiasing, true);
+
+	QPoint TopLeft = ScreenToText(QPoint(area.x(), area.y()));
+	QPoint DownRight =
+		ScreenToText(QPoint(area.x() + area.width(), area.y() + area.height()));
+	qDebug() << "TopLeft: " << TopLeft;
+	qDebug() << "DownRight: " << DownRight;
 
 	// background
 	{
@@ -85,9 +95,8 @@ void QAsciiArt::paintEvent(QPaintEvent * /* event */)
 		brush.setStyle(Qt::BrushStyle::SolidPattern);
 		painter.setBrush(brush);
 
-		QPoint screenpos1 = TextToScreen(QPoint(0, 0));
-		QPoint screenpos2 =
-			TextToScreen(QPoint(m_data.Width(), m_data.Height()));
+		QPoint screenpos1 = TextToScreen(TopLeft);
+		QPoint screenpos2 = TextToScreen(DownRight);
 
 		QRect screenpos(screenpos1.x(), screenpos1.y(),
 						screenpos2.x() - screenpos1.x(),
@@ -102,17 +111,17 @@ void QAsciiArt::paintEvent(QPaintEvent * /* event */)
 		pen.setWidthF(0.5);
 		painter.setPen(pen);
 
-		for (int x = 0; x < m_data.Width(); ++x)
+		for (int x = TopLeft.x(); x < DownRight.x(); ++x)
 		{
-			QPoint screenpos1 = TextToScreen(QPoint(x, 0));
-			QPoint screenpos2 = TextToScreen(QPoint(x, m_data.Height()));
+			QPoint screenpos1 = TextToScreen(QPoint(x, TopLeft.y()));
+			QPoint screenpos2 = TextToScreen(QPoint(x, DownRight.y()));
 			painter.drawLine(screenpos1, screenpos2);
 		}
 
-		for (int y = 0; y < m_data.Height(); ++y)
+		for (int y = TopLeft.y(); y < DownRight.y(); ++y)
 		{
-			QPoint screenpos1 = TextToScreen(QPoint(0, y));
-			QPoint screenpos2 = TextToScreen(QPoint(m_data.Width(), y));
+			QPoint screenpos1 = TextToScreen(QPoint(TopLeft.x(), y));
+			QPoint screenpos2 = TextToScreen(QPoint(DownRight.x(), y));
 			painter.drawLine(screenpos1, screenpos2);
 		}
 	}
@@ -154,9 +163,9 @@ void QAsciiArt::paintEvent(QPaintEvent * /* event */)
 		pen.setWidthF(1);
 		painter.setPen(pen);
 
-		for (int y = 0; y < m_data.Height(); ++y)
+		for (int y = TopLeft.y(); y < DownRight.y(); ++y)
 		{
-			for (int x = 0; x < m_data.Width(); ++x)
+			for (int x = TopLeft.x(); x < DownRight.x(); ++x)
 			{
 				QPoint screenpos = TextToScreen(QPoint(x, y));
 
