@@ -82,9 +82,18 @@ void QAsciiArt::paintEvent(QPaintEvent *event)
 	painter.eraseRect(area);
 	painter.setRenderHint(QPainter::Antialiasing, true);
 
-	QPoint TopLeft = ScreenToText(QPoint(area.x(), area.y()));
-	QPoint DownRight =
-		ScreenToText(QPoint(area.x() + area.width(), area.y() + area.height()));
+	QPoint TopLeft = ScreenToText(QPoint(area.x(), area.y())) - QPoint(1,1);
+	QPoint DownRight = ScreenToText(QPoint(area.x() + area.width(),
+										   area.y() + area.height())) +
+					   QPoint(1, 1);
+	if (DownRight.x() > m_data.Width())
+	{
+		DownRight.setX(m_data.Width());
+	}
+	if (DownRight.y() > m_data.Height())
+	{
+		DownRight.setY(m_data.Height());
+	}
 	qDebug() << "TopLeft: " << TopLeft;
 	qDebug() << "DownRight: " << DownRight;
 
