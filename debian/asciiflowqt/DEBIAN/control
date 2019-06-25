@@ -1,0 +1,26 @@
+Package: asciiflowqt
+Version: 0.0-y-1
+Architecture: amd64
+Maintainer: Georg Gast <georg@schorsch-tech.de>
+Installed-Size: 209
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libqt5core5a (>= 5.11.0~rc1), libqt5gui5 (>= 5.2.0), libqt5widgets5 (>= 5.0.2), libstdc++6 (>= 4.1.1)
+Section: editors
+Priority: optional
+Homepage: https://github.com/schorsch1976/AsciiFlowQT
+Description: Draw and edit any ascii art diagram, used for programming issues.
+ Draw and edit any ascii art diagram.
+ It is mostly used for programming issues to document structure in an header or
+ source as a comment.
+ Features:
+ =========
+  - Export and Import ascii to/from the clipboard
+  - Export and Import ascii to/from a file
+  - Move parts of the ascii art
+  - draw rectangles
+  - resize rectangles
+  - draw class diagramms
+  - draw arrows
+  - draw lines - draw freehand
+  - add text to any position
+  - undo and redo any change
+  - practicly unlimited space. The drawing area grows when you move out of it.
