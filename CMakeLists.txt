@@ -164,3 +164,4 @@ FIND_PACKAGE(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 ######################################################################
 
 ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(man)
