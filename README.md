@@ -15,9 +15,9 @@ As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow 
 
 Features:
 =========
-- Export and Import ascii to/from the clipboard
-- Export and Import ascii to/from a file
-- Move parts of the ascii art
+- export and import ascii to/from the clipboard
+- export and import ascii to/from a file
+- move parts of the ascii art
 - draw rectangles
 - resize rectangles
 - draw class diagramms
@@ -28,7 +28,7 @@ Features:
 - undo and redo any change
 - practicly unlimited space. The drawing area grows when you move out of it.
 
-Licence
+License
 =======
 GPL-3.0
 
@@ -41,7 +41,7 @@ Building:
 
 Installing requirements:
 ========================
-- apt get install qt5-qmake qtbase5-dev cmake g++
+- apt get install tbase5-dev cmake g++
 
 Building:
 =========
@@ -52,4 +52,4 @@ Building:
 - cmake ..
 - make
 
-Just start it by ./src/AsciiFlow
+Just start it by ./src/asciiflow
