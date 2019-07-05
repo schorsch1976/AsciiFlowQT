@@ -1,5 +1,5 @@
-asciiflowqt (0.0-y-1) unstable; urgency=medium
+asciiflowqt (0.3.3-1) unstable; urgency=medium
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release. (Closes: #931080)
 
  -- Georg Gast <georg@schorsch-tech.de>  Tue, 25 Jun 2019 18:11:43 +0200
