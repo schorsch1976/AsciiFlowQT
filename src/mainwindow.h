@@ -4,6 +4,7 @@
 #include "changepreferencesdialog.h"
 #include "qasciiart.h"
 
+#include <QCloseEvent>
 #include <QMainWindow>
 
 namespace Ui
@@ -26,6 +27,9 @@ private slots:
 	void OnImport();
 
 	void OnAbout();
+
+protected:
+	void closeEvent(QCloseEvent *event) override;
 
 private:
 	void ApplySettings();

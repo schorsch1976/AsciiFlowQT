@@ -104,6 +104,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::OnAbout);
 
+	// close
+	connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(OnClose()));
+
 	// default Tool
 	ui->btnToolLine->setChecked(true);
 
@@ -216,6 +219,24 @@ void MainWindow::OnAbout()
 	dlg.exec();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+	QString current_data = ui->customArea->Export();
+	if (current_data.size())
+	{
+		QMessageBox box(QMessageBox::Question, tr("Close"),
+						tr("Close would destroy current data.\n\nContinue?"),
+						QMessageBox::Yes | QMessageBox::No);
+
+		if (box.exec() != QMessageBox::Yes)
+		{
+			event->ignore();
+			return;
+		};
+	}
+	event->accept();
+}
+
 void MainWindow::ApplySettings()
 {
 	std::vector<QToolButton *> buttons = {
@@ -223,8 +244,8 @@ void MainWindow::ApplySettings()
 		ui->btnAbout,		 ui->btnExport,		   ui->btnImport,
 		ui->btnSettings,
 
-		ui->btnToolLine,	 ui->btnToolMove,	  ui->btnToolText,
-		ui->btnToolArrow,	ui->btnToolClass,	 ui->btnToolErase,
+		ui->btnToolLine,	 ui->btnToolMove,	   ui->btnToolText,
+		ui->btnToolArrow,	 ui->btnToolClass,	   ui->btnToolErase,
 		ui->btnToolFreehand, ui->btnToolRectangle, ui->btnToolResize};
 
 	QSize size(m_preferences.icon_size, m_preferences.icon_size);
