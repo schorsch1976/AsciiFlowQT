@@ -1,0 +1,6 @@
+asciiflow (0.4.1-1) UNRELEASED; urgency=low
+
+  * Initial release. Closes: #931080
+    <nnnn is the bug number of your ITP>
+
+ -- Georg Gast <georg@schorsch-tech.de>  Tue, 18 Jul 2023 20:26:21 +0200

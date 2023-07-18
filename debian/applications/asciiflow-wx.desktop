@@ -1,0 +1,15 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Asciiflow Wx
+GenericName=Asciiflow Wx
+GenericName[de]=Zeichnen von Ascii Diagrammen
+GenericName[en_GB]=Draw Ascii diagrams
+Exec=AsciiFlowWx
+Icon=CMakeSetup
+Terminal=false
+X-MultipleArgs=true
+Type=Application
+Categories=Development;Building;
+StartupNotify=true

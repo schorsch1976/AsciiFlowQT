@@ -1,0 +1,50 @@
+Source: asciiflow
+Section: devel
+Priority: optional
+Maintainer: Georg Gast <georg@schorsch-tech.de>
+Build-Depends: cmake, git,
+			debhelper-compat (= 13),
+			qtbase5-dev,
+			libwxgtk3.2-dev
+Standards-Version: 4.5.1
+Homepage: https://github.com/schorsch1976/AsciiFlowQT
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/asciiflow.git
+#Vcs-Browser: https://salsa.debian.org/debian/asciiflow
+
+Package: libasciiflow
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: 	${misc:Depends}, ${shlibs:Depends}
+Description: shared code between asciiflow-wx and asciiflow-qt
+ This package contains the shared library.: libasciiflow
+ .
+ It contains the shared code between asciiflowqt and
+ asciiflowwx.
+
+Package: libasciiflow-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libasciiflow (= ${binary:Version}), ${misc:Depends}
+Description: shared code between asciiflow-wx and asciiflow-qt
+ This package contains the development files.: libasciiflow
+ .
+ It contains the shared code between asciiflow-qt and
+ asciiflow-wx.
+
+Package: asciiflow-qt
+Architecture: any
+Multi-Arch: foreign
+Depends: libasciiflow (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: asciiart editor using qt5
+ Asciiart Editor based on libasciiflow-dev using the QT5 library.
+
+Package: asciiflow-wx
+Architecture: any
+Multi-Arch: foreign
+Depends: libasciiflow (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: aasciiart editor using wxwidgets
+ Asciiart Editor based on libasciiflow-dev using the wxwidgets library.
