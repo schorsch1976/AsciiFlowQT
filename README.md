@@ -6,7 +6,7 @@ Purpose:
 Draw and edit any ascii art diagram.
 It is mostly used for programming issues to document structure in an header or source as a comment.
 
-Why a offline Ascii Flow Editor?
+Why an offline Ascii Flow Editor?
 ================================
 
 As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow stable](http://stable.ascii-flow.appspot.com/#Draw) is just available when there is internet, i wrote my own QT/Wx based application.
@@ -15,9 +15,9 @@ As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow 
 
 Features:
 =========
-- Export and Import ascii to/from the clipboard
-- Export and Import ascii to/from a file
-- Move parts of the ascii art
+- export and import ascii to/from the clipboard
+- export and import ascii to/from a file
+- move parts of the ascii art
 - draw rectangles
 - resize rectangles
 - draw class diagramms
@@ -26,9 +26,9 @@ Features:
 - draw freehand
 - add text to any position
 - undo and redo any change
-- practicly unlimited space. The drawing area grows when you move out of it.
+- practically unlimited space. The drawing area grows when you move out of it.
 
-Licence
+License
 =======
 GPL-3.0
 
@@ -41,7 +41,7 @@ Building:
 
 Installing requirements:
 ========================
-- apt get install qt5-qmake qtbase5-dev cmake g++
+- apt get install qtbase5-dev libwxgtk3.2-dev cmake g++
 
 Building:
 =========
