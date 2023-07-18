@@ -1,2 +1,4 @@
 *.user
 build*
+cmake-*
+.idea

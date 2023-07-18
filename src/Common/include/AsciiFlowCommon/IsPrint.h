@@ -1,0 +1,13 @@
+#pragma once
+
+#include "AsciiFlowCommon/AsciiFlowCommonAPI.h"
+
+namespace Common
+{
+///////////////////////////////////////////////////////////////////////////////
+// Wrapper for std::isprint
+// https://en.cppreference.com/w/cpp/string/byte/isprint
+///////////////////////////////////////////////////////////////////////////////
+AsciiFlowCommon_API bool IsPrint(char character);
+
+} // namespace Common

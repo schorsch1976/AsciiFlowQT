@@ -1,0 +1,1 @@
+Qt5 is included in the AsciiflowQt as the Automoc stuff dows not work from here.

@@ -1,4 +1,4 @@
-Asciiflow QT Editor
+Asciiflow QT/Wx Editor
 ===================
 
 Purpose:
@@ -9,7 +9,7 @@ It is mostly used for programming issues to document structure in an header or s
 Why a offline Ascii Flow Editor?
 ================================
 
-As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow stable](http://stable.ascii-flow.appspot.com/#Draw) is just available when there is internet, i wrote my own QT based application.
+As i got annoyed that [AsciiFlow Infinity](http://asciiflow.com/) or [asciiflow stable](http://stable.ascii-flow.appspot.com/#Draw) is just available when there is internet, i wrote my own QT/Wx based application.
 
 [AsciiFlow Infinity](http://asciiflow.com/) now wants me to log in to google. Why should i log in to google to draw some ascii charts?
 
@@ -34,7 +34,7 @@ GPL-3.0
 
 Used Libraries:
 ===============
-QT-5
+QT-5 and/or wxWidgets
 
 Building:
 =========
@@ -52,4 +52,4 @@ Building:
 - cmake ..
 - make
 
-Just start it by ./src/AsciiFlow
+Just start it by ./src/qt/AsciiFlow or ./src/wx/AsciiFlow

@@ -1,0 +1,51 @@
+.TH AsciiFlowWx 1 "26 Jun 2019" "version 0.3"
+.SH NAME
+AsciiFlowWx \- Draw and edit any ascii art chart
+
+.SH SYNOPSIS
+.B AsciiFlowWx
+
+.SH DESCRIPTION
+
+\fBAsciiFlowWx\fR let you draw ascii art diagrams.
+
+\fBAsciiFlowWx\fR compiles and runs on linux and windows as it is plain c++11.
+
+.SH Features
+.nf
+- Export and Import ascii to/from the clipboard
+- Export and Import ascii to/from a file
+- Move parts of the ascii art
+- draw rectangles
+- resize rectangles
+- draw class diagramms
+- draw arrows
+- draw lines
+- draw freehand
+- add text to any position
+- undo and redo any change
+- practicly unlimited space. The drawing area grows when you move out of it.
+.fi
+
+.SH LICENCE
+GPL-3
+
+.SH Suggestions, bugs and improvements
+If you have any suggestions or improvements, they are welcome! Please let me now as a issue on github.
+
+.SH AUTHOR
+Georg Gast <georg@schorsch-tech.de>
+
+.SH THANKS
+A lot thanks go to eggy on debianforum.de for testing, guides and hints on debian packaging.
+
+I also want to thank to AsciiFlow Infinity as it opted to ask to log into google. This pushed
+me to write this offline tool.
+
+Big THANKS go to wxWidgets for this wonderful library.
+
+.SH BUGS
+Please report bugs and improvements at
+
+.B
+https://github.com/schorsch1976/AsciiFlowWx/issues
